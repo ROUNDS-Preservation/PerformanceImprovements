@@ -2,6 +2,7 @@
 using HarmonyLib;
 using UnityEngine;
 using UnboundLib;
+using FriendlyFoe;
 
 namespace PerformanceImprovements.Patches
 {
@@ -23,20 +24,20 @@ namespace PerformanceImprovements.Patches
 				num = num2;
 				num2++;
 			}
-			GameObject[] array = ObjectsToSpawn.SpawnObject(__instance.transform, hit, __instance.bulletHit[num].objectsToSpawn, null, null, 55f, null, false);
+			PoolableWrapper[] array = ObjectsToSpawn.SpawnObject(__instance.transform, hit, __instance.bulletHit[num].objectsToSpawn, null, null, 55f, null, false);
 			if (PerformanceImprovements.FixBulletHitParticleEffects)
             {
-				foreach (GameObject obj in array)
+				foreach (PoolableWrapper obj in array)
                 {
-					if (obj != null)
+					if (obj.Instance != null)
 					{
-						obj.AddComponent<RemoveAfterPoint>();
+						obj.Instance.AddComponent<RemoveAfterPoint>();
 
 
-						RemoveAfterSeconds rem = obj.GetComponent<RemoveAfterSeconds>();
+						RemoveAfterSeconds rem = obj.Instance.GetComponent<RemoveAfterSeconds>();
 						if (rem == null)
 						{
-							rem = obj.AddComponent<RemoveAfterSeconds>();
+							rem = obj.Instance.AddComponent<RemoveAfterSeconds>();
 							rem.seconds = 2f;
 						}
 					}
@@ -47,9 +48,9 @@ namespace PerformanceImprovements.Patches
 			{
 				for (int i = 0; i < array.Length; i++)
 				{
-					for (int j = 0; j < array[i].transform.childCount; j++)
+					for (int j = 0; j < array[i].Instance.transform.childCount; j++)
 					{
-						ChangeColor componentInChildren = array[i].transform.GetChild(j).GetComponentInChildren<ChangeColor>();
+						ChangeColor componentInChildren = array[i].Instance.transform.GetChild(j).GetComponentInChildren<ChangeColor>();
 						if (componentInChildren)
 						{
 							componentInChildren.GetComponent<ParticleSystemRenderer>().material.color = projectielColor;

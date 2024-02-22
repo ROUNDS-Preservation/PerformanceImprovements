@@ -13,7 +13,6 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
-using On;
 using UnboundLib.GameModes;
 using System.Collections;
 using PerformanceImprovements.Patches;
@@ -382,7 +381,7 @@ namespace PerformanceImprovements
         {
             instance = this;
         }
-        private float ScreenShakeValue
+        public float ScreenShakeValue
         {
             get
             {
@@ -390,7 +389,7 @@ namespace PerformanceImprovements
             }
             set { }
         }
-        private float AberrationValue
+        public float AberrationValue
         {
             get
             {
@@ -424,15 +423,15 @@ namespace PerformanceImprovements
             GameModeManager.AddHook(GameModeHooks.HookBattleStart, (gm) => SetBattleInProgress(true));
 
             // reset GameInProgress
-            On.MainMenuHandler.Awake += (orig, self) =>
+            /*On.MainMenuHandler.Awake += (orig, self) =>
             {
                 PerformanceImprovements.GameInProgress = false;
 
                 orig(self);
-            };
+            };*/
             // add modifications to GameFeel
-            On.Screenshaker.OnGameFeel += this.Screenshaker_OnGameFeel;
-            On.ChomaticAberrationFeeler.OnGameFeel += this.ChomaticAberrationFeeler_OnGameFeel;
+            //On.Screenshaker.OnGameFeel += this.Screenshaker_OnGameFeel;
+            //On.ChomaticAberrationFeeler.OnGameFeel += this.ChomaticAberrationFeeler_OnGameFeel; do i need to do anything here?
         }
 
         void Update()
@@ -470,7 +469,7 @@ namespace PerformanceImprovements
             SetAdaptiveLevel(currentAdaptiveLevel - 1);
         }
 
-        private void SetAdaptiveLevel(AdaptivePresetLevel targetLevel)
+        private void SetAdaptiveLevel(AdaptivePresetLevel targetLevel) //one question
         {
             // exit if enum passed is outside of the defined range
             if (!Enum.IsDefined(typeof(AdaptivePresetLevel), targetLevel)) return;
@@ -1036,7 +1035,7 @@ namespace PerformanceImprovements
             ArtHandler.instance.NextArt();
         }
 
-        private void Screenshaker_OnGameFeel(On.Screenshaker.orig_OnGameFeel orig, global::Screenshaker self, Vector2 feelDirection)
+        /*private void Screenshaker_OnGameFeel(On.Screenshaker.orig_OnGameFeel orig, global::Screenshaker self, Vector2 feelDirection)
         {
             orig(self, feelDirection * (float)(PerformanceImprovements.instance.ScreenShakeValue)/100f);
         }
@@ -1044,7 +1043,7 @@ namespace PerformanceImprovements
         private void ChomaticAberrationFeeler_OnGameFeel(On.ChomaticAberrationFeeler.orig_OnGameFeel orig, global::ChomaticAberrationFeeler self, Vector2 feelDirection)
         {
             orig(self, feelDirection * (float)(PerformanceImprovements.instance.AberrationValue)/100f);
-        }
+        }*/
 
         internal IEnumerator MapTransitionScalePostFX(float transitionTime)
         {
