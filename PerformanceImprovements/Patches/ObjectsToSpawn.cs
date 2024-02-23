@@ -1,4 +1,5 @@
 ﻿using System;
+using FriendlyFoe;
 using HarmonyLib;
 using UnboundLib;
 using UnityEngine;
@@ -10,13 +11,13 @@ namespace PerformanceImprovements.Patches
 
     class ObjectsToSpawnPatchSpawnObject
     {
-        private static void Postfix(ref GameObject[] __result)
+        private static void Postfix(ref FriendlyFoe.PoolableWrapper[] __result)
         {
             if (PerformanceImprovements.FixProjectileObjectsToSpawn)
             {
-                foreach (GameObject obj in __result)
+                foreach (PoolableWrapper obj in __result)
                 {
-                    if (obj != null) { obj.AddComponent<RemoveAfterPoint>(); }
+                    if (obj != null) { obj.Instance.AddComponent<RemoveAfterPoint>(); }
                 }
             }
         }

@@ -1,10 +1,11 @@
 ﻿using System;
 using HarmonyLib;
 using UnityEngine;
-
+/*
 namespace PerformanceImprovements.Patches
 {
-    [HarmonyPatch(typeof(ChangeColor),"Start")]
+    [HarmonyPatch(typeof(ChangeColor), "Start")] /
+   
     class ChangeColorPatchStart
     {
         private static void Postfix(ChangeColor __instance)
@@ -29,3 +30,4 @@ namespace PerformanceImprovements.Patches
         }
     }
 }
+*/

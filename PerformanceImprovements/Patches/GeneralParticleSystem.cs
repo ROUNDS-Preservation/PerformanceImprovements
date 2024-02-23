@@ -20,13 +20,16 @@ namespace PerformanceImprovements.Patches
 
         private static bool Prefix(GeneralParticleSystem __instance)
         {
+			//UnityEngine.Debug.Log("This was called");
             if (PerformanceImprovements.DisableCardParticleAnimations && PerformanceImprovements.GameInProgress && __instance?.gameObject?.transform?.parent?.GetComponentInChildren<TextMeshProUGUI>() == null)
             {
+                //UnityEngine.Debug.Log("This was called 1");
                 __instance.InvokeMethod("Init", new object[] { });
 				int num = (int)UnityEngine.Mathf.Clamp(15, 0, PerformanceImprovements.NumberOfGeneralParticles);
 				for (int i = 0; i < num; i++)
                 {
-					CreateParticleStatic(__instance, i/__instance.duration);
+                    //UnityEngine.Debug.Log("This was called 2");
+                    CreateParticleStatic(__instance, i/__instance.duration);
                 }
                 return false;
             }

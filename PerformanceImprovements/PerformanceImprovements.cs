@@ -866,7 +866,7 @@ namespace PerformanceImprovements
                 CycleArt();
                 SyncOptionsMenus();
             }
-            TogglesToSync["DisableMapParticles"].Add(MenuHandler.CreateToggle(DisableMapParticles, "Disable Map Particle Effects", menu, MapParticlesChanged, 30, color: hardChangeColor).GetComponent<Toggle>());
+            TogglesToSync["DisableMapParticles"].Add(MenuHandler.CreateToggle(DisableMapParticles, "Disable Map Particle Effects (CURRENTLY DISABLED)", menu, MapParticlesChanged, 30, color: hardChangeColor).GetComponent<Toggle>());
 
             MenuHandler.CreateText(" ", menu, out TextMeshProUGUI _, 30);
             GameObject helpMenu = MenuHandler.CreateMenu("Help", () => { }, menu, 60, true, true, menu.transform.parent.gameObject);
@@ -901,7 +901,7 @@ namespace PerformanceImprovements
                 FixBulletHitParticleEffects = val;
                 SyncOptionsMenus();
             }
-            TogglesToSync["FixBulletHitParticleEffects"].Add(MenuHandler.CreateToggle(FixBulletHitParticleEffects, "Fix persistance issues\nwith BulletHit particle effects", menu, FixBulletHitChanged, 30, color: easyChangeColor).GetComponent<Toggle>());
+            TogglesToSync["FixBulletHitParticleEffects"].Add(MenuHandler.CreateToggle(FixBulletHitParticleEffects, "Fix persistance issues\nwith BulletHit particle effects (CURRENTLY DISABLED)", menu, FixBulletHitChanged, 30, color: easyChangeColor).GetComponent<Toggle>());
             void FixMapLagChanged(bool val)
             {
                 FixMapLoadLag = val;
@@ -953,7 +953,7 @@ namespace PerformanceImprovements
                 DisableBulletHitSurfaceParticleEffects = val;
                 SyncOptionsMenus();
             }
-            TogglesToSync["DisableBulletHitSurfaceParticleEffects"].Add(MenuHandler.CreateToggle(DisableBulletHitSurfaceParticleEffects, "Disable BulletHitSurface particle effects", menu, DisableBulletHitChanged, 30, color: hardChangeColor).GetComponent<Toggle>());
+            TogglesToSync["DisableBulletHitSurfaceParticleEffects"].Add(MenuHandler.CreateToggle(DisableBulletHitSurfaceParticleEffects, "Disable BulletHitSurface particle effects (CURRENTLY DISABLED)", menu, DisableBulletHitChanged, 30, color: hardChangeColor).GetComponent<Toggle>());
             void DisableBulletHitBulletChanged(bool val)
             {
                 DisableBulletHitBulletParticleEffects = val;

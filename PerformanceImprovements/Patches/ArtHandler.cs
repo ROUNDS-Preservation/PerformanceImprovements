@@ -42,15 +42,19 @@ namespace PerformanceImprovements.Patches
 
 		private static void Postfix()
 		{
-			foreach (ParticleSystem particleSystem in UnityEngine.Object.FindObjectsOfType<ParticleSystem>())
+			//UnityEngine.Debug.Log("Map particle pain");
+			//UnityEngine.Debug.Log(Rendering != null);
+            //UnityEngine.Debug.Log(FrontParticles != null);
+            foreach (ParticleSystem particleSystem in UnityEngine.Object.FindObjectsOfType<ParticleSystem>())
 			{
-				ParticleSystem.MainModule main = particleSystem.main;
+                //UnityEngine.Debug.Log("These particles are here");
+                ParticleSystem.MainModule main = particleSystem.main;
 				main.maxParticles = (int)PerformanceImprovements.MaxNumberOfParticles;
 			}
 			foreach (Player player in PlayerManager.instance.players)
             {
 
-				((ParticleSystem)player.gameObject.GetComponentInChildren<PlayerSkinParticle>().GetFieldValue("part")).enableEmission = !PerformanceImprovements.DisablePlayerParticles;
+				((ParticleSystem)player.gameObject.GetComponentInChildren<PlayerSkinParticle>().GetFieldValue("part")).emission.enabled.Equals(!PerformanceImprovements.DisablePlayerParticles);
 
 				Gun gun = player.GetComponent<Holding>().holdable.GetComponent<Gun>();
 				GameObject spring = gun.gameObject.transform.GetChild(1).gameObject;
@@ -66,7 +70,10 @@ namespace PerformanceImprovements.Patches
 
 			}
 			BackParticles?.SetActive(!PerformanceImprovements.DisableBackgroundParticles);
-			FrontParticles?.SetActive(!PerformanceImprovements.DisableMapParticles);
+			//Unbound.Instance.ExecuteAfterSeconds(1, ()=>{ //i fucking forgot the comma wth is wrong with me sometimes istfg
+				//UnityEngine.Debug.Log("we execute real");
+				//FrontParticles?.SetActive(!PerformanceImprovements.DisableMapParticles);
+			//});
 			Light?.SetActive(!PerformanceImprovements.DisableOverheadLightAndShadows);
 			if (Light && Light.GetComponent<Screenshaker>())
 			{
