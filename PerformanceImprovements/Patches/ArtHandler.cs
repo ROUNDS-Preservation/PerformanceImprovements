@@ -16,7 +16,8 @@ namespace PerformanceImprovements.Patches
 		private const float defaultSimulationTime = 1.5f;
 
 		private static GameObject Rendering => GameObject.Find("/Game/Visual/Rendering ");
-		private static GameObject FrontParticles => Rendering?.transform?.GetChild(1)?.gameObject;
+		//private static GameObject Test = PerformanceImprovements.Assets.LoadAsset<GameObject>("Square");
+        private static GameObject FrontParticles => Rendering?.transform?.GetChild(1)?.gameObject;
 		private static GameObject BackParticles => Rendering?.transform?.GetChild(0)?.gameObject;
 		private static GameObject Light => Rendering?.transform?.GetChild(3)?.GetChild(0)?.gameObject;
 
@@ -28,7 +29,10 @@ namespace PerformanceImprovements.Patches
             }
 			yield break;
 		}
-
+		private void Awake()
+		{
+            //GameObject.DontDestroyOnLoad(Test);
+        }
 		private static IEnumerator InitParticles(ParticleSystem part, int particles = defaultParticles)
         {
 			if (part == null) { yield break; }
@@ -70,11 +74,20 @@ namespace PerformanceImprovements.Patches
 
 			}
 			BackParticles?.SetActive(!PerformanceImprovements.DisableBackgroundParticles);
-			//Unbound.Instance.ExecuteAfterSeconds(1, ()=>{ //i fucking forgot the comma wth is wrong with me sometimes istfg
-				//UnityEngine.Debug.Log("we execute real");
-				//FrontParticles?.SetActive(!PerformanceImprovements.DisableMapParticles);
-			//});
-			Light?.SetActive(!PerformanceImprovements.DisableOverheadLightAndShadows);
+			//FrontParticles?.SetActive(!PerformanceImprovements.DisableMapParticles);
+			FrontParticles?.GetComponentInChildren<GameObject>().SetActive(!PerformanceImprovements.DisableMapParticles);
+			/*Test.GetOrAddComponent<Renderer>().sortingLayerName = "MapParticle";
+			Test.GetComponent<Renderer>().sortingOrder = -1;
+            if (PerformanceImprovements.DisableMapParticles)
+                Test.SetActive(true);
+            else
+                Test.SetActive(false);
+			Test.GetComponent<SpriteRenderer>().color = new Color(0.4f, 0.4f, 0.4f);*/
+            //UnityEngine.Debug.Log(Mask!=null);
+            //Mask.SetActive(false);
+            //Mask.active = false;
+            //Mask.gameObject.transform.localScale = Vector3.zero;
+            Light?.SetActive(!PerformanceImprovements.DisableOverheadLightAndShadows);
 			if (Light && Light.GetComponent<Screenshaker>())
 			{
 				Light.GetComponentInChildren<Screenshaker>().enabled = !PerformanceImprovements.DisableOverheadLightShake;

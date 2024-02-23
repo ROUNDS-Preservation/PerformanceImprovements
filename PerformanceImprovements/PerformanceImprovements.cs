@@ -397,18 +397,31 @@ namespace PerformanceImprovements
             }
             set { }
         }
-
+        public static AssetBundle Assets = null;
+        public static GameObject Test = null;
         private void Awake()
         {
             // apply patches
             new Harmony(ModId).PatchAll();
+            PerformanceImprovements.Assets = AssetUtils.LoadAssetBundleFromResources("klccassets", typeof(PerformanceImprovements).Assembly);
+            UnityEngine.Debug.Log(Assets!=null);
         }
         private void Start()
         {
-            // load assets
-            //PerformanceImprovements.Assets = AssetUtils.LoadAssetBundleFromResources("performance", typeof(PerformanceImprovements).Assembly);
-
-            // add credits
+            // load assets]
+            if (Assets != null)
+            {
+                Assets.LoadAllAssets();
+                Test = Instantiate(PerformanceImprovements.Assets.LoadAsset<GameObject>("Square"));
+            }
+            if (Test != null)
+            {
+                DontDestroyOnLoad(Test);
+                Test.GetComponent<SpriteRenderer>().color = new Color(0.4f, 0.4f, 0.4f);
+                Test.GetOrAddComponent<Renderer>().sortingLayerName = "MapParticle";
+                Test.GetComponent<Renderer>().sortingOrder = -1;
+            }
+                // add credits
             Unbound.RegisterCredits(ModName, new string[] { "Pykess", "Ascyst (Original RemovePostFX mod)" }, new string[] { "github", "Support Pykess", "Support Ascyst" }, new string[] { "https://github.com/Rounds-Modding/PerformanceImprovements", "https://ko-fi.com/pykess", "https://www.buymeacoffee.com/Ascyst" });
 
             // add GUI to modoptions menu
@@ -436,6 +449,13 @@ namespace PerformanceImprovements
 
         void Update()
         {
+            if (Test != null)
+            {
+                if (PerformanceImprovements.DisableMapParticles)
+                    Test.SetActive(true);
+                else
+                    Test.SetActive(false);
+            }
             if (!AdaptivePerformance) return;
 
             // track frame times
