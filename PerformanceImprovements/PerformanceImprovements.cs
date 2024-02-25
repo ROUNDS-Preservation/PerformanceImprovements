@@ -962,7 +962,7 @@ namespace PerformanceImprovements
                 DisableBulletHitSurfaceParticleEffects = val;
                 SyncOptionsMenus();
             }
-            TogglesToSync["DisableBulletHitSurfaceParticleEffects"].Add(MenuHandler.CreateToggle(DisableBulletHitSurfaceParticleEffects, "Disable BulletHitSurface particle effects (CURRENTLY DISABLED)", menu, DisableBulletHitChanged, 30, color: hardChangeColor).GetComponent<Toggle>());
+            TogglesToSync["DisableBulletHitSurfaceParticleEffects"].Add(MenuHandler.CreateToggle(DisableBulletHitSurfaceParticleEffects, "Disable BulletHitSurface particle effects", menu, DisableBulletHitChanged, 30, color: hardChangeColor).GetComponent<Toggle>());
             void DisableBulletHitBulletChanged(bool val)
             {
                 DisableBulletHitBulletParticleEffects = val;
