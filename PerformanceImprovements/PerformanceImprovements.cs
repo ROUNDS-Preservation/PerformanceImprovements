@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using UnboundLib.GameModes;
 using System.Collections;
 using PerformanceImprovements.Patches;
+using SpriteMasking;
 
 namespace PerformanceImprovements
 {
@@ -44,6 +45,7 @@ namespace PerformanceImprovements
         private static bool BattleInProgress = false;
 
         private static bool _GameInProgress = false;
+
         internal static bool GameInProgress
         {
             get
@@ -460,22 +462,6 @@ namespace PerformanceImprovements
 
         void Update()
         {
-            if (Test != null)
-            {
-                Test.SetActive(PerformanceImprovements.DisableMapParticles);
-                Test.transform.GetChild(0).gameObject.SetActive(Test.activeSelf);
-            }
-            else if (Test == null)
-            {
-                Test = Instantiate(GameObject.Find("/Game/Visual/Rendering ").transform.GetChild(1).gameObject.transform.GetChild(3).gameObject);
-                //Test.AddComponent<SpriteRenderer>();
-                //Test.AddComponent<Renderer>();
-                DontDestroyOnLoad(Test);
-                //Test.transform.localScale = new Vector3(1000, 1000, 1000);
-                //Test.GetComponent<SpriteRenderer>().color = new Color(0.4f, 0.4f, 0.4f);
-                Test.GetOrAddComponent<Renderer>().sortingLayerName = "MapParticle";
-                Test.GetComponent<Renderer>().sortingOrder = -1;
-            }
             if (!AdaptivePerformance) return;
 
             // track frame times
@@ -498,6 +484,7 @@ namespace PerformanceImprovements
                 StepLevelUp();
             }
         }
+        
 
         private void StepLevelUp()
         {
