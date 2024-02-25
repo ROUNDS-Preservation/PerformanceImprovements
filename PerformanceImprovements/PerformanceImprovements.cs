@@ -436,6 +436,14 @@ namespace PerformanceImprovements
 
         void Update()
         {
+            if (PerformanceImprovements.DisableBulletHitSurfaceParticleEffects)
+            {
+                foreach(GameObject g in GameObject.FindObjectsOfType<GameObject>())
+                    if(g.GetComponent<ChangeColor>()!=null)
+                        Destroy(g);
+
+                //if (__instance != null && __instance.gameObject != null) { UnityEngine.GameObject.Destroy(__instance.gameObject); }
+            }
             if (!AdaptivePerformance) return;
 
             // track frame times
@@ -867,7 +875,7 @@ namespace PerformanceImprovements
                 CycleArt();
                 SyncOptionsMenus();
             }
-            TogglesToSync["DisableMapParticles"].Add(MenuHandler.CreateToggle(DisableMapParticles, "Disable Map Particle Effects (CURRENTLY DISABLED)", menu, MapParticlesChanged, 30, color: hardChangeColor).GetComponent<Toggle>());
+            TogglesToSync["DisableMapParticles"].Add(MenuHandler.CreateToggle(DisableMapParticles, "Disable Map Particle Effects", menu, MapParticlesChanged, 30, color: hardChangeColor).GetComponent<Toggle>());
 
             MenuHandler.CreateText(" ", menu, out TextMeshProUGUI _, 30);
             GameObject helpMenu = MenuHandler.CreateMenu("Help", () => { }, menu, 60, true, true, menu.transform.parent.gameObject);
