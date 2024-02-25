@@ -75,7 +75,14 @@ namespace PerformanceImprovements.Patches
 			}
 			BackParticles?.SetActive(!PerformanceImprovements.DisableBackgroundParticles);
 			//FrontParticles?.SetActive(!PerformanceImprovements.DisableMapParticles);
-			FrontParticles?.GetComponentInChildren<GameObject>().SetActive(!PerformanceImprovements.DisableMapParticles);
+			for(int i=0; i<FrontParticles.transform.childCount-1;i++)
+			{
+				FrontParticles.transform.GetChild(i).gameObject.SetActive(!PerformanceImprovements.DisableMapParticles);
+			}
+			//FrontParticles.GetComponentInChildren<SpriteRenderer>().gameObject.SetActive(false);
+			if(PerformanceImprovements.Test!=null)
+			PerformanceImprovements.Test.transform.parent = FrontParticles.transform;
+			//FrontParticles?.GetComponentInChildren<GameObject>().SetActive(!PerformanceImprovements.DisableMapParticles);
 			/*Test.GetOrAddComponent<Renderer>().sortingLayerName = "MapParticle";
 			Test.GetComponent<Renderer>().sortingOrder = -1;
             if (PerformanceImprovements.DisableMapParticles)

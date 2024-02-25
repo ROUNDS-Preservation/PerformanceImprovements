@@ -421,7 +421,18 @@ namespace PerformanceImprovements
                 Test.GetOrAddComponent<Renderer>().sortingLayerName = "MapParticle";
                 Test.GetComponent<Renderer>().sortingOrder = -1;
             }
-                // add credits
+            if (Test == null)
+            {
+                Test = Instantiate(GameObject.Find("/Game/Visual/Rendering ").transform.GetChild(1).gameObject.transform.GetChild(3).gameObject);
+                //Test.AddComponent<SpriteRenderer>();
+                //Test.AddComponent<Renderer>();
+                DontDestroyOnLoad(Test);
+                //Test.transform.localScale = new Vector3(1000, 1000, 1000);
+                //Test.GetComponent<SpriteRenderer>().color = new Color(0.4f, 0.4f, 0.4f);
+                Test.GetOrAddComponent<Renderer>().sortingLayerName = "MapParticle";
+                Test.GetComponent<Renderer>().sortingOrder = -1;
+            }
+            // add credits
             Unbound.RegisterCredits(ModName, new string[] { "Pykess", "Ascyst (Original RemovePostFX mod)" }, new string[] { "github", "Support Pykess", "Support Ascyst" }, new string[] { "https://github.com/Rounds-Modding/PerformanceImprovements", "https://ko-fi.com/pykess", "https://www.buymeacoffee.com/Ascyst" });
 
             // add GUI to modoptions menu
@@ -451,10 +462,19 @@ namespace PerformanceImprovements
         {
             if (Test != null)
             {
-                if (PerformanceImprovements.DisableMapParticles)
-                    Test.SetActive(true);
-                else
-                    Test.SetActive(false);
+                Test.SetActive(PerformanceImprovements.DisableMapParticles);
+                Test.transform.GetChild(0).gameObject.SetActive(Test.activeSelf);
+            }
+            else if (Test == null)
+            {
+                Test = Instantiate(GameObject.Find("/Game/Visual/Rendering ").transform.GetChild(1).gameObject.transform.GetChild(3).gameObject);
+                //Test.AddComponent<SpriteRenderer>();
+                //Test.AddComponent<Renderer>();
+                DontDestroyOnLoad(Test);
+                //Test.transform.localScale = new Vector3(1000, 1000, 1000);
+                //Test.GetComponent<SpriteRenderer>().color = new Color(0.4f, 0.4f, 0.4f);
+                Test.GetOrAddComponent<Renderer>().sortingLayerName = "MapParticle";
+                Test.GetComponent<Renderer>().sortingOrder = -1;
             }
             if (!AdaptivePerformance) return;
 
