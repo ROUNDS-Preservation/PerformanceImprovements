@@ -407,7 +407,6 @@ namespace PerformanceImprovements
         private void Start()
         {
             // load assets]
-
             // add credits
             Unbound.RegisterCredits(ModName, new string[] { "Pykess", "Ascyst (Original RemovePostFX mod)" }, new string[] { "github", "Support Pykess", "Support Ascyst" }, new string[] { "https://github.com/Rounds-Modding/PerformanceImprovements", "https://ko-fi.com/pykess", "https://www.buymeacoffee.com/Ascyst" });
 
@@ -436,14 +435,6 @@ namespace PerformanceImprovements
 
         void Update()
         {
-            if (PerformanceImprovements.DisableBulletHitSurfaceParticleEffects)
-            {
-                foreach(GameObject g in GameObject.FindObjectsOfType<GameObject>())
-                    if(g.GetComponent<ChangeColor>()!=null)
-                        Destroy(g);
-
-                //if (__instance != null && __instance.gameObject != null) { UnityEngine.GameObject.Destroy(__instance.gameObject); }
-            }
             if (!AdaptivePerformance) return;
 
             // track frame times
@@ -910,7 +901,7 @@ namespace PerformanceImprovements
                 FixBulletHitParticleEffects = val;
                 SyncOptionsMenus();
             }
-            TogglesToSync["FixBulletHitParticleEffects"].Add(MenuHandler.CreateToggle(FixBulletHitParticleEffects, "Fix persistance issues\nwith BulletHit particle effects (CURRENTLY DISABLED)", menu, FixBulletHitChanged, 30, color: easyChangeColor).GetComponent<Toggle>());
+            TogglesToSync["FixBulletHitParticleEffects"].Add(MenuHandler.CreateToggle(FixBulletHitParticleEffects, "Fix persistance issues\nwith BulletHit particle effects", menu, FixBulletHitChanged, 30, color: easyChangeColor).GetComponent<Toggle>());
             void FixMapLagChanged(bool val)
             {
                 FixMapLoadLag = val;

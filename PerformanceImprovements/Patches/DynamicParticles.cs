@@ -11,7 +11,13 @@ namespace PerformanceImprovements.Patches
     {
         private static bool Prefix(DynamicParticles __instance, float damage, Transform spawnerTransform, HitInfo hit, Color projectielColor, ref int ___spawnsThisFrame)
         {
-			if (PerformanceImprovements.DisableBulletHitSurfaceParticleEffects || (float)___spawnsThisFrame > PerformanceImprovements.MaximumBulletHitParticlesPerFrame || PerformanceImprovements.hitEffectsSpawnedThisFrame >= PerformanceImprovements.MaximumBulletHitParticlesPerFrame)
+            if (PerformanceImprovements.DisableBulletHitSurfaceParticleEffects)
+            {
+                foreach (GameObject g in GameObject.FindObjectsOfType<GameObject>())
+                    if (g.GetComponent<ChangeColor>() != null)
+                        UnityEngine.GameObject.Destroy(g);
+            }
+            if (PerformanceImprovements.DisableBulletHitSurfaceParticleEffects || (float)___spawnsThisFrame > PerformanceImprovements.MaximumBulletHitParticlesPerFrame || PerformanceImprovements.hitEffectsSpawnedThisFrame >= PerformanceImprovements.MaximumBulletHitParticlesPerFrame)
 			{
 				return false;
 			}
