@@ -1,6 +1,6 @@
 ﻿using System;
 using HarmonyLib;
-using UnboundLib;
+using Unbound;
 using UnityEngine;
 using PerformanceImprovements.Extensions;
 

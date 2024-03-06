@@ -1,7 +1,7 @@
 ﻿using System;
 using HarmonyLib;
 using UnityEngine;
-using UnboundLib;
+using Unbound;
 using System.Collections;
 using System.Linq;
 using PerformanceImprovements.Utils;

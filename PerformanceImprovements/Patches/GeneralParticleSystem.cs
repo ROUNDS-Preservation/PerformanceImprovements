@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using HarmonyLib;
-using UnboundLib;
+using Unbound;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unbound.Core;
 
 namespace PerformanceImprovements.Patches
 {

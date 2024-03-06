@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnboundLib;
+using Unbound;
+using Unbound.Core;
 
 namespace PerformanceImprovements.Utils
 {
@@ -43,7 +44,6 @@ namespace PerformanceImprovements.Utils
 		public void Awake()
 		{
 			player = gameObject.GetComponent<Player>();
-
 			// create the base only if it doesn't already exist, to prevent accidentally running Awake again
 			colorEffectBase = player.gameObject.GetOrAddComponent<ColorEffectBase>();
 			colorEffectBase.colorEffectDrones.Add(this);

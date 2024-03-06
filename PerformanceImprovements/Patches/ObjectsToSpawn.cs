@@ -1,7 +1,7 @@
 ﻿using System;
 using FriendlyFoe;
 using HarmonyLib;
-using UnboundLib;
+using Unbound;
 using UnityEngine;
 
 namespace PerformanceImprovements.Patches

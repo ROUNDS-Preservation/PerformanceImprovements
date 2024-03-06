@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using UnboundLib;
+using Unbound;
+using Unbound.Core;
 using UnityEngine;
 
 namespace PerformanceImprovements.Utils

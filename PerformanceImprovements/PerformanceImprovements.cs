@@ -1,22 +1,24 @@
 ﻿using System;
 using BepInEx;
 using BepInEx.Configuration;
-using UnboundLib;
+using Unbound;
 using HarmonyLib;
 using UnityEngine;
 using Jotunn.Utils;
 using System.Runtime.CompilerServices;
 using System.Reflection;
-using UnboundLib.Utils.UI;
+//using UnboundLib.Utils.UI;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
-using UnboundLib.GameModes;
+using Unbound.Gamemodes;
+using Unbound.Core;
 using System.Collections;
 using PerformanceImprovements.Patches;
 using SpriteMasking;
+using Unbound.Core.Utils.UI;
 
 namespace PerformanceImprovements
 {
@@ -408,13 +410,13 @@ namespace PerformanceImprovements
         {
             // load assets]
             // add credits
-            Unbound.RegisterCredits(ModName, new string[] { "Pykess", "Ascyst (Original RemovePostFX mod)", "Poppycars (bug fixes for the ROUNDS update)" }, new string[] { "github", "Support Pykess", "Support Ascyst" }, new string[] { "https://github.com/Rounds-Modding/PerformanceImprovements", "https://ko-fi.com/pykess", "https://www.buymeacoffee.com/Ascyst" });
+            UnboundCore.RegisterCredits(ModName, new string[] { "Pykess", "Ascyst (Original RemovePostFX mod)", "Poppycars (bug fixes for the ROUNDS update)" }, new string[] { "github", "Support Pykess", "Support Ascyst" }, new string[] { "https://github.com/Rounds-Modding/PerformanceImprovements", "https://ko-fi.com/pykess", "https://www.buymeacoffee.com/Ascyst" });
 
             // add GUI to modoptions menu
-            Unbound.RegisterMenu(ModName, () => { }, NewGUI, null, false);
+            UnboundCore.RegisterMenu(ModName, () => { }, NewGUI, null, false);
 
             // register as client-side
-            Unbound.RegisterClientSideMod(ModId);
+            UnboundCore.RegisterClientSideMod(ModId);
 
             GameModeManager.AddHook(GameModeHooks.HookGameStart, (gm) => SetGameInProgress(true));
             GameModeManager.AddHook(GameModeHooks.HookPointEnd, RemoveAfterPoint);

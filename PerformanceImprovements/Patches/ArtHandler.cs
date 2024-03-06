@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using HarmonyLib;
 using UnityEngine;
-using UnboundLib;
+using Unbound;
 using System.Collections;
 using System.Linq;
+using Unbound.Core;
 
 namespace PerformanceImprovements.Patches
 {
@@ -49,7 +50,6 @@ namespace PerformanceImprovements.Patches
             }
             foreach (Player player in PlayerManager.instance.players)
             {
-
                 ((ParticleSystem)player.gameObject.GetComponentInChildren<PlayerSkinParticle>().GetFieldValue("part")).enableEmission = !PerformanceImprovements.DisablePlayerParticles;
 
                 Gun gun = player.GetComponent<Holding>().holdable.GetComponent<Gun>();

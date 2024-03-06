@@ -23,6 +23,9 @@
     <Reference Include="PhotonUnityNetworking">
       <HintPath>$(RoundsFolder)\Rounds_Data\Managed\PhotonUnityNetworking.dll</HintPath>
     </Reference>
+    <Reference Include="UnboundGamemodes">
+      <HintPath>C:\Users\User\AppData\Roaming\r2modmanPlus-local\ROUNDS\profiles\panic and panic\BepInEx\plugins\Unknown-UnboundGamemodes\UnboundGamemodes.dll</HintPath>
+    </Reference>
     <Reference Include="UnboundLib">
       <HintPath>C:\Users\User\Downloads\UnboundLib.dll</HintPath>
     </Reference>

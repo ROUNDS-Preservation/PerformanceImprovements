@@ -1,5 +1,5 @@
 ﻿using HarmonyLib;
-using UnboundLib;
+using Unbound;
 using PerformanceImprovements;
 using System.Reflection.Emit;
 using System;
@@ -7,6 +7,7 @@ using System.Reflection;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Unbound.Core;
 
 
 namespace PerformanceImprovements.Patches
